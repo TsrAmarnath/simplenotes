@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React, { Fragment } from 'react';
+import React,  { Fragment, useState }  from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -21,10 +21,16 @@ import { gray, white, black } from 'ansi-colors';
 
 
 const App = () => {
+
+  const [enteredNotes, setEnteredNotes] = useState('');
+
+  enteredNotesHandler = (enteredtext)=>{
+    setEnteredNotes(enteredtext);
+  }
   return (
     <View style={styles.screen}>
       <View style={styles.inputContainer}>
-        <TextInput style={styles.input} placeholder='Enter your Notes' />
+        <TextInput style={styles.input} placeholder='Enter your Notes' onChangeText={enteredNotesHandler}  value={enteredNotes} />
         <Button title='ADD' />
       </View>
       <View>
