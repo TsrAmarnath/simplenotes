@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -22,10 +22,10 @@ import { gray, white, black } from 'ansi-colors';
 
 const App = () => {
   return (
-    <View style={{padding:50}}> 
-      <View style={{flexDirection:'row', justifyContent:"space-between" , alignItems:'center'}}>
-       <TextInput style={{width:'80%', padding:10, borderColor:'gray', borderWidth:1}} placeholder='Enter your Notes'/> 
-       <Button title='ADD'/>
+    <View style={styles.screen}>
+      <View style={styles.inputContainer}>
+        <TextInput style={styles.input} placeholder='Enter your Notes' />
+        <Button title='ADD' />
       </View>
       <View>
 
@@ -35,10 +35,20 @@ const App = () => {
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: 'gray',
+  screen: {
+    padding: 50
   },
-  
+  inputContainer: {
+    flexDirection: 'row',
+    justifyContent: "space-between",
+    alignItems: 'center'
+  }
+  ,
+  input: {
+    width: '80%', padding: 10, borderColor: 'gray', borderWidth: 1
+  }
+
+
 });
 
 export default App;
