@@ -35,9 +35,9 @@ const App = () => {
         <TextInput style={styles.input} placeholder='Enter your Notes' onChangeText={enteredNotesHandler}  value={enteredNotes} />
         <Button onPress={addNotesHandler} title='ADD' />
       </View>
-      <View>
+      <ScrollView>
 {notesArray.map((notes, index) => <View style={styles.listItems} key={index}><Text>{notes}</Text></View>)}
-      </View>
+      </ScrollView>
     </View>
   );
 };
