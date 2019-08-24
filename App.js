@@ -16,25 +16,27 @@ import {
   StatusBar,
   TextInput, Button
 } from 'react-native';
-import { gray, white, black } from 'ansi-colors';
-
 
 
 const App = () => {
 
   const [enteredNotes, setEnteredNotes] = useState('');
-
+  const [notesArray , setNotesArray] = useState([]);
   enteredNotesHandler = (enteredtext)=>{
     setEnteredNotes(enteredtext);
+  }
+
+  addNotesHandler = ()=>{
+   setNotesArray(notesArray=> [...notesArray, enteredNotes]);
   }
   return (
     <View style={styles.screen}>
       <View style={styles.inputContainer}>
         <TextInput style={styles.input} placeholder='Enter your Notes' onChangeText={enteredNotesHandler}  value={enteredNotes} />
-        <Button title='ADD' />
+        <Button onPress={addNotesHandler} title='ADD' />
       </View>
       <View>
-
+{notesArray.map((notes, index) => <View style={styles.listItems} key={index}><Text>{notes}</Text></View>)}
       </View>
     </View>
   );
@@ -52,8 +54,15 @@ const styles = StyleSheet.create({
   ,
   input: {
     width: '80%', padding: 10, borderColor: 'gray', borderWidth: 1
-  }
-
+  },
+  listItems:{
+    padding:10,
+    marginVertical: 10,
+    backgroundColor:'gray',
+    borderColor:'black',
+    borderWidth:1,
+    borderRadius:5
+  } 
 
 });
 
