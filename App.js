@@ -23,8 +23,8 @@ import { gray, white, black } from 'ansi-colors';
 const App = () => {
   return (
     <View style={{padding:50}}> 
-      <View>
-       <TextInput style={{padding:10, borderColor:'gray', borderWidth:1}} placeholder='Enter your Notes'/> 
+      <View style={{flexDirection:'row', justifyContent:"space-between" , alignItems:'center'}}>
+       <TextInput style={{width:'80%', padding:10, borderColor:'gray', borderWidth:1}} placeholder='Enter your Notes'/> 
        <Button title='ADD'/>
       </View>
       <View>
