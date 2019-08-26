@@ -14,7 +14,7 @@ import {
   View,
   Text,
   StatusBar,
-  TextInput, Button
+  TextInput, Button, FlatList
 } from 'react-native';
 
 
@@ -27,7 +27,7 @@ const App = () => {
   }
 
   addNotesHandler = ()=>{
-   setNotesArray(notesArray=> [...notesArray, enteredNotes]);
+   setNotesArray(notesArray=> [...notesArray, {id: Math.random().toString(), value: enteredNotes}]);
   }
   return (
     <View style={styles.screen}>
@@ -35,9 +35,7 @@ const App = () => {
         <TextInput style={styles.input} placeholder='Enter your Notes' onChangeText={enteredNotesHandler}  value={enteredNotes} />
         <Button onPress={addNotesHandler} title='ADD' />
       </View>
-      <ScrollView>
-{notesArray.map((notes, index) => <View style={styles.listItems} key={index}><Text>{notes}</Text></View>)}
-      </ScrollView>
+      <FlatList keyExtractor={(item,index)=> item.id} data={notesArray} renderItem={(itemData)=><View style={styles.listItems} ><Text>{itemData.item.value}</Text></View>}/>
     </View>
   );
 };
