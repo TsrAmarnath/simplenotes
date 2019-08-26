@@ -16,6 +16,8 @@ import {
   StatusBar,
   TextInput, Button, FlatList
 } from 'react-native';
+import NotesItem from './Components/Custom/NotesItem';
+import NotesInput from './Components/Custom/NotesInput';
 
 
 const App = () => {
@@ -31,11 +33,8 @@ const App = () => {
   }
   return (
     <View style={styles.screen}>
-      <View style={styles.inputContainer}>
-        <TextInput style={styles.input} placeholder='Enter your Notes' onChangeText={enteredNotesHandler}  value={enteredNotes} />
-        <Button onPress={addNotesHandler} title='ADD' />
-      </View>
-      <FlatList keyExtractor={(item,index)=> item.id} data={notesArray} renderItem={(itemData)=><View style={styles.listItems} ><Text>{itemData.item.value}</Text></View>}/>
+     <NotesInput enteredNotesHandler={enteredNotesHandler} enteredNotes={enteredNotes} addNotesHandler={addNotesHandler} />
+      <FlatList keyExtractor={(item,index)=> item.id} data={notesArray} renderItem={(itemData)=><NotesItem value={itemData.item.value} />}/>
     </View>
   );
 };
@@ -43,25 +42,7 @@ const App = () => {
 const styles = StyleSheet.create({
   screen: {
     padding: 50
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    justifyContent: "space-between",
-    alignItems: 'center'
   }
-  ,
-  input: {
-    width: '80%', padding: 10, borderColor: 'gray', borderWidth: 1
-  },
-  listItems:{
-    padding:10,
-    marginVertical: 10,
-    backgroundColor:'gray',
-    borderColor:'black',
-    borderWidth:1,
-    borderRadius:5
-  } 
-
 });
 
 export default App;
