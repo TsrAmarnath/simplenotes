@@ -21,20 +21,32 @@ import NotesInput from './Components/Custom/NotesInput';
 
 
 const App = () => {
-
+ 
   const [enteredNotes, setEnteredNotes] = useState('');
   const [notesArray , setNotesArray] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
   enteredNotesHandler = (enteredtext)=>{
     setEnteredNotes(enteredtext);
   }
 
   addNotesHandler = ()=>{
    setNotesArray(notesArray=> [...notesArray, {id: Math.random().toString(), value: enteredNotes}]);
+   setModalOpen(false)
+   setEnteredNotes('')
+  }
+
+  deleteNotes = (notesId)=>{
+    setNotesArray(notesArray=>{ return notesArray.filter((notes)=> notes.id !==notesId)})
+  }
+
+  openModalHandler = ()=>{
+    setModalOpen(true);
   }
   return (
     <View style={styles.screen}>
-     <NotesInput enteredNotesHandler={enteredNotesHandler} enteredNotes={enteredNotes} addNotesHandler={addNotesHandler} />
-      <FlatList keyExtractor={(item,index)=> item.id} data={notesArray} renderItem={(itemData)=><NotesItem value={itemData.item.value} />}/>
+      <Button  onPress={openModalHandler} title="Add New Notes"/>
+     <NotesInput modalOpen={modalOpen} enteredNotesHandler={enteredNotesHandler} enteredNotes={enteredNotes} addNotesHandler={addNotesHandler} />
+      <FlatList keyExtractor={(item,index)=> item.id} data={notesArray} renderItem={(itemData)=><NotesItem onDelete={deleteNotes.bind(this, itemData.item.id) } value={itemData.item.value} />}/>
     </View>
   );
 };

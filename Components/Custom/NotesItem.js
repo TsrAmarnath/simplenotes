@@ -1,9 +1,9 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 
 const NotesItem = (props)=>{
-    return(<View style={styles.listItems} ><Text>{props.value}</Text></View>)
+    return( <TouchableOpacity onPress={props.onDelete}><View style={styles.listItems} ><Text>{props.value}</Text></View></TouchableOpacity> )
 
 
 }
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     listItems:{
         padding:10,
         marginVertical: 10,
-        backgroundColor:'gray',
+        backgroundColor:'#e0e0e0',
         borderColor:'black',
         borderWidth:1,
         borderRadius:5
